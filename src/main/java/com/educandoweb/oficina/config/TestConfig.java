@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.educandoweb.oficina.entities.Category;
 import com.educandoweb.oficina.entities.Order;
+import com.educandoweb.oficina.entities.Product;
 import com.educandoweb.oficina.entities.User;
 import com.educandoweb.oficina.entities.enums.OrderStatus;
 import com.educandoweb.oficina.repositories.CategoryRepository;
 import com.educandoweb.oficina.repositories.OrderRepository;
+import com.educandoweb.oficina.repositories.ProductRepository;
 import com.educandoweb.oficina.repositories.UserRepository;
 
 @Configuration
@@ -28,13 +30,24 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product("Lorem ipsum dolor sit amet, consectetur.", null, "", "The Lord of the Rings", 90.5);
+        Product p2 = new Product("Nulla eu imperdiet purus. Maecenas ante.", null, "",  "Smart TV", 2190.0);
+        Product p3 = new Product("Nam eleifend maximus tortor, at mollis.", null, "", "Macbook Pro", 1250.0);
+        Product p4 = new Product("Donec aliquet odio ac rhoncus cursus.", null, "", "PC Gamer", 1200.0);
+        Product p5 = new Product("Cras fringilla convallis sem vel faucibus.", null, "", "Rails for Dummies", 100.99);
+
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User("maria@gmail.com", null,  "Maria Brown", "123456", "988888888");
         User u2 = new User("alex@gmail.com", null, "Alex Green", "123456", "977777777");
